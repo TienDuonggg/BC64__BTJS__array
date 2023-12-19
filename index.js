@@ -12,6 +12,8 @@ function handleArray(){
 
 }
 
+// Bai 1
+
 function CaculatorTotal(){
     for (let i = 0; i < arrNumber.length; i++) {
       elementTotal += arrNumber[i];
@@ -19,6 +21,8 @@ function CaculatorTotal(){
     }
     return elementTotal
 }
+
+// Bai 2
 
 function CountNumber(){
     for (let i = 0; i < arrNumber.length; i++) {
@@ -30,7 +34,7 @@ function CountNumber(){
       return elementCount
 }
 
-
+// Bai 3
 
 
 function SmallNumber(){
@@ -45,6 +49,8 @@ function SmallNumber(){
       }
       return small
 }
+
+// Bai 4
 
 function minNumber(){
     var min = arrNumber[0]
@@ -75,6 +81,7 @@ function EvenNumber(){
       return even
 }
 
+// Bai 5
 
 function placeNumber(){
  var indexFirst =   document.getElementById('index1').value * 1
@@ -92,6 +99,8 @@ function placeNumber(){
        
 }
 
+// Bai 6
+
 function increaNumber(){
     arrNumber.sort()
     return arrNumber
@@ -99,6 +108,7 @@ function increaNumber(){
           
    }
 
+   // Bai 7
    
 function isPrime(num){
 
@@ -120,10 +130,14 @@ function isPrime(num){
          
    }
 
+   // Bai 8
+
    function FindPrime(){
    
     return arrNumber.filter(item => isPrime(item));
    }
+
+   // Bai 9
 
 
    function handleArrayInteger(){
@@ -134,9 +148,9 @@ function isPrime(num){
 
 }
 
-function IntegerNumber(){
-    for (let i = 0; i < arrInteger.length; i++) {
-     var integer =  Number.isInteger(arrInteger[i])
+function IntegerNumber(arr){
+    for (let i = 0; i < arr.length; i++) {
+     var integer =  Number.isInteger(arr[i])
      if(integer){
         elementInteger++
         
@@ -148,63 +162,41 @@ function IntegerNumber(){
 
 }
 
-function handleCompare(arr){
-    console.log(arr)
-    var positiveNumbers = 0 
-    var negativeNumbers = 0
+// Bai 10
+
+function handleCompare(arr) {
+    console.log(arr);
+    let positiveNumbers = 0;
+    let negativeNumbers = 0;
+
     for (let i = 0; i < arr.length; i++) {
-        if(arr[i] > 0){
-          positiveNumbers++
-          console.log(positiveNumbers)
-          
-           
+        if (arr[i] > 0) {
+            positiveNumbers++;
+            
+        } else if (arr[i] < 0) {
+            negativeNumbers++;
+            
         }
-        else if (arr[i] < 0){
-            negativeNumbers++
-           console.log(negativeNumbers)
-           
-        }
-   
-           
-       }
-       return {
-        positive: positiveNumbers,
-        negative: negativeNumbers
-    };
-}
-
-handleArray()
-
-
-function CompareNumber(positiveNumbers, negativeNumbers){
-    
-    if(positiveNumbers > negativeNumbers){
-        return 'Số dương > số âm'
     }
 
-    else if(positiveNumbers < negativeNumbers){
-        return 'Số dương < số âm'
+    if (positiveNumbers > negativeNumbers) {
+        return 'Số dương > hơn số âm';
+    } else if (positiveNumbers < negativeNumbers) {
+        return 'Số âm > số dương';
+    } else {
+        return 'Số dương = số âm';
     }
-
-    else{
-        return 'Số dương = số âm'
-    }
-    
-
 }
 
 
 
 
 
-
-
-
-
+/*-------------------------------------------------------------------------*/
 
 
 document.querySelector('.btn__add').onclick = function(){
-     handleCompare(arrNumber)
+     
    document.getElementById('arrayNumber').innerHTML = handleArray()
    
 
@@ -292,18 +284,16 @@ document.querySelector('.btnNumber').onclick = function(){
 function handleBtn(btn, element){
     document.querySelector(btn).onclick = function(){
         
-        document.getElementById(element).innerHTML =  `Số nguyên: ${IntegerNumber()}`
+        document.getElementById(element).innerHTML =  `Số nguyên: ${IntegerNumber(arrInteger)}`
      }
     
 }
 
 handleBtn('.btnInteger', 'IntegerNumber')
 
-function handleBtn(btn, element){
-    document.querySelector(btn).onclick = function(){
-        document.getElementById(element).innerHTML =  CompareNumber(result.positive, result.negative)
-     }
-    
-}
 
-handleBtn('.btnCompare', 'resultNumber') 
+document.querySelector('.btnCompare').onclick = function () {
+    const result = handleCompare(arrNumber);
+    document.getElementById('resultNumber').innerHTML = result;
+};
+
