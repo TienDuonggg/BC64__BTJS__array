@@ -1,6 +1,8 @@
 var arrNumber = []
 var elementTotal = 0
 var elementCount = 0
+var arrInteger = []
+var elementInteger = 0
 
 function handleArray(){
     var addNumber = document.getElementById('addNumber').value * 1
@@ -28,7 +30,7 @@ function CountNumber(){
       return elementCount
 }
 
-console.log(arrNumber)
+
 
 
 function SmallNumber(){
@@ -98,20 +100,114 @@ function increaNumber(){
    }
 
    
-// function PrimeNumber(){
-//     return arrNumber.map(function(item){
-//          isPrime(item)
-//     })
+function isPrime(num){
+
+    if(num <= 1){
+        return false
+    }
+    for(var i = 2; i< Math.sqrt(num); i++){
+
+        if(num % i == 0){
+            return false
+    
+        }
+        return num
+    }
+    // return arrNumber.map(function(item){
+    //      isPrime(item)
+    // })
            
          
-//    }
+   }
+
+   function FindPrime(){
+   
+    return arrNumber.filter(item => isPrime(item));
+   }
+
+
+   function handleArrayInteger(){
+    var addNumber = document.getElementById('addInteger').value * 1
+    arrInteger.push(addNumber)
+    console.log(arrInteger)
+    return arrInteger
+
+}
+
+function IntegerNumber(){
+    for (let i = 0; i < arrInteger.length; i++) {
+     var integer =  Number.isInteger(arrInteger[i])
+     if(integer){
+        elementInteger++
+        
+     }
+
+        
+    }
+    return elementInteger
+
+}
+
+function handleCompare(arr){
+    console.log(arr)
+    var positiveNumbers = 0 
+    var negativeNumbers = 0
+    for (let i = 0; i < arr.length; i++) {
+        if(arr[i] > 0){
+          positiveNumbers++
+          console.log(positiveNumbers)
+          
+           
+        }
+        else if (arr[i] < 0){
+            negativeNumbers++
+           console.log(negativeNumbers)
+           
+        }
+   
+           
+       }
+       return {
+        positive: positiveNumbers,
+        negative: negativeNumbers
+    };
+}
+
+handleArray()
+
+
+function CompareNumber(positiveNumbers, negativeNumbers){
+    
+    if(positiveNumbers > negativeNumbers){
+        return 'Số dương > số âm'
+    }
+
+    else if(positiveNumbers < negativeNumbers){
+        return 'Số dương < số âm'
+    }
+
+    else{
+        return 'Số dương = số âm'
+    }
+    
+
+}
+
+
+
+
+
+
 
 
 
 
 
 document.querySelector('.btn__add').onclick = function(){
+     handleCompare(arrNumber)
    document.getElementById('arrayNumber').innerHTML = handleArray()
+   
+
 }
 
 
@@ -180,9 +276,34 @@ handleBtn('.btnIncrea', 'increaNumber')
 
 function handleBtn(btn, element){
     document.querySelector(btn).onclick = function(){
-        document.getElementById(element).innerHTML =  PrimeNumber()
+        
+        document.getElementById(element).innerHTML =  FindPrime()
      }
     
 }
 
 handleBtn('.btnPrime', 'primeNumber') 
+
+document.querySelector('.btnNumber').onclick = function(){
+
+    document.getElementById('arrayNumberInteger').innerHTML = handleArrayInteger()
+}
+
+function handleBtn(btn, element){
+    document.querySelector(btn).onclick = function(){
+        
+        document.getElementById(element).innerHTML =  `Số nguyên: ${IntegerNumber()}`
+     }
+    
+}
+
+handleBtn('.btnInteger', 'IntegerNumber')
+
+function handleBtn(btn, element){
+    document.querySelector(btn).onclick = function(){
+        document.getElementById(element).innerHTML =  CompareNumber(result.positive, result.negative)
+     }
+    
+}
+
+handleBtn('.btnCompare', 'resultNumber') 
